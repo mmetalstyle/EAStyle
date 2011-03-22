@@ -1,0 +1,72 @@
+
+<script type="text/javascript">
+$(document).ready(function(){
+        $("#rad2").click(function(){
+           $("#stranica").animate({opacity: "hide"}, 1)
+           $("#catalog").animate({opacity: "show"}, 1)
+		});
+		$("#rad1").click(function(){
+           $("#catalog").animate({opacity: "hide"}, 1)
+           $("#stranica").animate({opacity: "show"}, 1)
+		});
+
+});
+</script>
+<style type="text/css">
+.fon_opis{
+	background-image: url(/admin/images/fon_opis.jpg);
+	padding: 5px 5px 5px 5px;
+	}
+.okno_b{
+	border:solid 1px #000000;
+	background: #ffffff;
+	}
+.table_names{
+	font-weight: bold;
+    background: #DDF9FF;
+	}
+.table_fon{
+    background: #ffffff;
+	}
+.table_line{
+    border-bottom:dotted 1px #000000;
+	}
+#catalog{
+	display:none;
+}
+</style>
+<table>
+	<tr id="stranica">
+            <td>
+            <div class="okno_b">
+            <div class="fon_opis"><b>Создать страницу:</b></div>
+	            <form name="create1" action="/admin.php?action=add&ok=ok" method="post">
+				<table>
+				<tr>
+				<td width="100" class="table_names">Имя(engl) :</td><td align="left">    <input name="Name" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Заголовок(страницы) :         </td><td align="left"><input name="Zagolovok" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Заголовок(новости) :         </td><td align="left"><input name="Title" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Каталоги :         </td><td align="left"><select name="Category[]" size="6"  style="width:70%;" multiple>
+												<option value="0" selected></option>
+												{cats}</select></td>  </tr><tr>
+
+				<td class="table_names">Полная новость :  </td><td align="left"><textarea name="Full" type="text" value="" rows="8" cols="60"></textarea></td>  </tr><tr>
+
+				<td class="table_names">Краткая новость : </td><td align="left"><textarea name="Shot" type="text" value="" rows="8" cols="60"></textarea></td>  </tr><tr>
+
+				<td class="table_names">Ключи : </td><td align="left"><textarea name="Meta_tegs" type="text" value="" rows="3" cols="50"></textarea></td>  </tr><tr>
+
+				<td class="table_names">Шаблон :       </td><td align="left"><input name="Template" type="text" value="main" /></td> </tr>
+				</table>
+				<input name="Metka" type="hidden" value="1" />
+		        <input type="submit" value="Создать">
+				</form>
+			</div>
+			</td>
+	</tr>
+</table>
+
+

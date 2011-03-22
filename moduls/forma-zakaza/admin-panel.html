@@ -1,0 +1,62 @@
+<div style="margin:10px 0px 0px 30px;">
+<h1>Просмотр заявок:</h1>
+		 <table border="1" style="margin:10px 0px 0px 25px;width:770px;height:250px;">
+			<tr>
+				<td width="250" align="left" valign="top">
+					<div style="height:300px;overflow:auto;" id="zayavki">
+                		{zayavki}
+                	</div>
+				</td>
+				<td align="left" valign="top">
+                	<div id="info" style="text-align:left;vertical-align:top;">
+
+                	</div>
+				</td>
+			</tr>
+		 </table>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	/* плавное появление контента */
+	window.sendPostZakaz = function(href){
+		$.get(href, function(data) {
+			$('#info').html(data);
+		});
+	}
+	$('.new_zakaz, .old_zakaz').click(function () {
+   		sendPostZakaz($(this).attr('id_zakaza'));
+   		$(this).attr('class','old_zakaz');
+   	});
+
+   $('.delate_zayavku').click(function () {   		showDelDialog($(this));
+	  // sendPostDeleteZayavku($(this).attr('zid'));
+	  // $(this).parent().css('display', 'none');
+   });
+
+   window.sendPostDeleteZayavku = function(href){
+		$.get(href, function(data) {
+			//$('#zayavki').load(href+'&load_z=true');
+		});
+	}
+
+	window.showDelDialog = function(href) {
+		$("#dialog-confirm").dialog({
+			resizable: false,
+			height:140,
+			modal: true,
+			buttons: {
+				"Да": function() {					sendPostDeleteZayavku(href.attr('zid'));
+					href.parent().css('display', 'none');
+					$( this ).dialog( "close" );
+				},
+				"Нет": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
+		}
+});
+</script>
+<div id="dialog-confirm" title="Удаление заявки" style="display:none;">
+	<p>Вы действительно хотите удалить эту заявку?</p>
+</div>

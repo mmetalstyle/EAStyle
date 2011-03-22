@@ -1,0 +1,73 @@
+
+<script type="text/javascript">
+$(document).ready(function(){
+        $("#rad2").click(function(){
+           $("#stranica").animate({opacity: "hide"}, 1)
+           $("#catalog").animate({opacity: "show"}, 1)
+		});
+		$("#rad1").click(function(){
+           $("#catalog").animate({opacity: "hide"}, 1)
+           $("#stranica").animate({opacity: "show"}, 1)
+		});
+
+});
+</script>
+<style type="text/css">
+.fon_opis{
+	background-image: url(/admin/images/fon_opis.jpg);
+	padding: 5px 5px 5px 5px;
+	}
+.okno_b{
+	border:solid 1px #000000;
+	background: #ffffff;
+	}
+.table_names{
+	font-weight: bold;
+    background: #DDF9FF;
+	}
+.table_fon{
+    background: #ffffff;
+	}
+.table_line{
+    border-bottom:dotted 1px #000000;
+	}
+</style>
+<table>
+	<tr >
+            <td>
+            <div class="okno_b">
+            <div class="fon_opis"><b>Создать каталог:</b></div>
+	            <form name="create2" action="/admin.php?action=add&ok=ok" method="post">
+				<table class="table_fon">
+				<tr>
+				<td width="100" class="table_names">Имя(engl) :</td><td align="left">    <input name="Name" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Метатег(title) :         </td><td align="left"><input name="Zagolovok" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Заголовок(новости) :         </td><td align="left"><input name="Title" type="text" value="" size="60"/></td>  </tr><tr>
+
+				<td class="table_names">Каталоги :         </td><td align="left"><select name="Category[]" size="8"  style="width:380px;" multiple>
+												<option value="0" selected></option>
+												{cats2}</select></td>  </tr><tr>
+				<td class="table_names">Шаблон :       </td><td align="left"><input name="Template" type="text" value="main" /></td> </tr>
+				</table>
+				<input name="Metka" type="hidden" value="2" />
+		        <input type="submit" value="Создать">
+				</form>
+				</div><br />
+				<div class="okno_b">
+				<div align="center">
+					<div align="left" class="fon_opis">Список всех категорий:</div>
+					<table width="700" class="table_fon">
+					<td width="60" class="table_names">ID</td><td width="200" class="table_names">Категория:</td><td class="table_names">Альтернативное имя:</td><td class="table_names">Действия:</td></tr><tr>
+						<tr>
+							{cats_list}
+						</tr>
+					</table>
+				</div>
+				</div>
+			</td>
+	</tr>
+</table>
+
+

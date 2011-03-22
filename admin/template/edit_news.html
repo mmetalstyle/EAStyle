@@ -1,0 +1,90 @@
+
+<style type="text/css">
+.edit_p {
+	background: #DDF9FF;
+	z-index: 5;
+	width:1050px;
+	border:solid 1px #4EF3EB;
+	}
+#edit b{	background: #FBB346;
+	margin:auto;	}
+#edit b:hover{
+	background: #000000;
+	color: #735FE2;
+	}
+.edit_active{
+	background: #ffffff;
+	color: #4EF3EB;
+	border:solid 2px #4EF3EB;
+	padding:5px;
+	top:100px;
+	}
+.edit_not_active{	background: ##4EF3EB;
+	color: #4EF3EB;
+	border:solid 1px #4EF3EB;
+	}
+.close{
+	top:0px;
+	float:right;
+	}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+		$("#show_full").click(
+		function() {			$("#panel_show_shot").animate({opacity: "hide"}, 1)			$("#panel_show_full").animate({opacity: "show"}, 1)
+
+			$("#show_shot").toggleClass("edit_active")
+							.addClass("edit_not_active")
+			$("#show_full").removeClass("edit_not_active")
+							.addClass("edit_active")
+		});
+		$("#show_shot").click(
+		function() {
+			$("#panel_show_full").animate({opacity: "hide"}, 1)
+			$("#panel_show_shot").animate({opacity: "show"}, 1)
+			$("#show_full").toggleClass("edit_active")
+							.addClass("edit_not_active")
+			$("#show_shot").removeClass("edit_not_active")
+							.addClass("edit_active")
+
+		});
+
+		var positionFormZapr=0;
+
+		$("#formzapr").click(
+		function() {
+			if(positionFormZapr==0){
+			$("#polezapr").fadeIn(500);
+			positionFormZapr=1;
+		    }else{
+		    $("#polezapr").fadeOut(500);
+		    positionFormZapr=0;
+		    }
+		});
+
+		 /* �������������� ��������*/
+		$(".edit_btn-slide").click(
+		function(){
+			$("#edit_panel").slideToggle("slow");
+			$(this).toggleClass("active"); return false;
+		});
+
+        /* ������ �������������� ������ ���� */
+		$("#edit").click(
+		//var page_id = 27;
+		function() {
+        	//showPopup('edit_p');
+            $('#content').load(
+	        	"/admin.php/?action=edit_page_editor&page_id="+$("#edit").attr('class'),
+	        	{rnd:Math.random()}, // ����� �� �����������
+	        	function(){
+	        	//$('.content_loader').hide();
+	    	});
+		});
+		var editp_width = Math.max(40, parseInt(($(window).width()/100)*90)) + 'px';
+		$('.edit_p').css({'width':editp_width});
+});
+</script>
+
+<div align="right" id="edit" class="{id_news}"><b>Редактировать</b></div>
+

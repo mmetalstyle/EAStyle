@@ -1,0 +1,30 @@
+
+<style type="text/css">
+.close{
+	top:0px;
+	float:right;
+	}
+.right{	float:right;}
+</style>
+<div id="popup_edit_p">
+  <div class="edit_p">
+			<form id="iditTarget" method="post">
+		       <table width="100%" border="0">
+				<tr>
+					<td width="150">Заголовок(страницы) :</td><td>    <input name="Zagolovok" type="text" value="{title}" size="50" style="float:left;" /><b style="float:right;padding:2px;border:solid 1px #4EF3EB;background: #ffffff;" id="edit_close"><a href="" onCLick="closeEditor('/admin.php/?action=edit_page');">Закрыть</a></b></td></tr><tr >
+                    <td></td>
+                    <td style="padding-top:5px;padding-left:10px;">
+                    </td></tr>
+                    <tr id="panel_show_full">
+					<td>Полная новость :  </td><td><textarea  name="Full"  rows="17" style="width:90%;border:solid 2px #4EF3EB;">{description}</textarea></td>
+                    </tr>
+                    <tr>
+                    <td width="150">Ключи :</td><td>    <input name="Keys" type="text" value="{keys}" size="50" style="float:left;" />
+                    </td>
+     			</tr>
+			   </table>
+				<input name="id" type="hidden" value="{id_news}">
+				<b style="float:right;padding:2px;border:solid 1px #4EF3EB;background: #ffffff;" id="edit_close"><a href="" onCLick="sendPost('/admin.php/?action=edit_page');">Применить</a></b>
+			</form>
+	</div>
+</div>
