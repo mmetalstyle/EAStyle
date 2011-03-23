@@ -19,6 +19,10 @@
 
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors',true);
+ini_set('html_errors',true);
+
 define ( 'EASTYLEENGINE', 'true');
 define ( 'ROOT_DIR', dirname ( __FILE__ ) );
 define ( 'INCLUDE_DIR', ROOT_DIR . '/include' );
@@ -31,39 +35,35 @@ include_once (INCLUDE_DIR . '/errors.php');
 
 
 
-if($_SESSION['user']) { 
+if(isset($_SESSION['user'])) { 
 	$downloadAdminTemplate = true;
 
 	$data = array();
 
 	$data['template']="main";
 
-    if (isset($_GET['option'])) {
-        if ($_GET['option'] == "delete_cats") {          	$result = $work -> delete_cats($_GET['id']);
-        	echo $result;        }
-
-        //TODO
-    }
-
 	if(isset($_GET['action'])){		if (@fopen(ROOT_DIR.'/admin/action/' . $_GET['action'] . '.php', 'r')) {
 		    include_once(ROOT_DIR . '/admin/action/' . $_GET['action'] . '.php');
 	    } else {
 	    	//TODO echo error
-	    	//header('Location: /admin.php?action=add');
+	    	header('Location: /admin.php?action=add');
 	    }
 	}
 
 
 
     if($downloadAdminTemplate) {
-		if($error){echo $error;}  //����� ������
+		if (isset($error)) {
+			echo $error;
+		} 
 
 		$main_content = file_get_contents("admin/template/".$data['template'].".html");
-		$main_content = str_replace('{content}', $data['content'], $main_content);
+		if (isset($data['content'])) {
+		$main_content = str_replace('{content}', $data['content'], $main_content);}
 
 
-		$main_content = str_replace('{title_news}', $data['title_news'], $main_content);
-		$main_content = str_replace('{title}', $data['title'], $main_content);
+		//$main_content = str_replace('{title_news}', $data['title_news'], $main_content);
+		//$main_content = str_replace('{title}', $data['title'], $main_content);
 
 		echo $main_content;
 	}

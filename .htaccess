@@ -1,0 +1,16 @@
+
+RewriteEngine on
+
+
+RewriteRule ^(login) ./?action=$1 [L]
+RewriteRule ^(login)/ ./?action=$1 [L]
+RewriteRule ^(logout) ./?action=$1 [L]
+RewriteRule ^(logout)/ ./?action=$1 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)$ ./?catalog=$1 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/$ ./?catalog=$1 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ ./?catalog=$1&podcatalog=$2 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/$ ./?catalog=$1&podcatalog=$2 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)$ ./?catalog=$1&podcatalog=$2&page=$3 [L]
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)/$ ./?catalog=$1&podcatalog=$2&page=$3 [L]
+RewriteRule ^([0-9a-zA-Z_-]+).html$ ./?page=$1 [L]
+

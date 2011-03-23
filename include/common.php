@@ -65,7 +65,7 @@ class Work
 			$res[$i]['name_1'] = stripslashes($res[$i]['name_1']);
 			$res[$i]['ID'] = stripslashes($res[$i]['ID']);
 
-			$con =file_get_contents(ROOT_DIR . "/template/shotstory.html");
+			$con = file_get_contents(ROOT_DIR . "/template/shotstory.html");
 
 			$con = str_replace('{shot-story}', $res[$i]['shot_descr'], $con);
 			$con = str_replace('{title}', $res[$i]['title'], $con);
