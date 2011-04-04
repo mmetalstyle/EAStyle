@@ -1,0 +1,113 @@
+<div style="margin:10px 0px 0px 30px;">
+<h1>Хотите заказать номер?</h1>
+<p style="margin-left:28px;"><b>Заполните форму заказа:</b></p>
+<p style="margin-left:30px;"><small>(Поля со * обязательны для заполнения!)</small></p>
+	<form method="POST">
+		 <table border="0" style="margin:10px 0px 0px 25px;">
+			<tr>
+				<td style="width:170px;">Номер*:</td>
+				<td>
+						<select style="width:150px;" name="nomerastyles">
+						<option value="Люкс">Люкс</option>
+						<option value="Стандарт одноместный">Стандарт одноместный </option>
+						<option value="Стандарт двухместный">Стандарт двухместный </option>
+						<option value="Полулюкс">Полулюкс </option>
+						</select>
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Количество человек*:</td>
+				<td>
+						<input type="text" id="peoplesnumber" name="peoplesnumber" value="" style="width:50px" />
+				</td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Время проживания. От*:</td>
+				<td>
+					<input type="text" id="firstDate" name="firstDate" value="" />
+				</td>
+				<td style="width:70px;padding-left:10px;">До*:</td>
+				<td>
+					<input type="text" id="secondDate" name="secondDate" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>Ваше имя*:</td>
+				<td>
+					<input type="text" id="firstName" name="firstname" value="" />
+				</td>
+				<td>Фамилия:</td>
+				<td>
+					<input type="text" id="secondName" name="secondname" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>Контактный телефон*:</td>
+				<td>
+					<input type="text" id="telephonNumber" name="telephone" value="" />
+				</td>
+				<td>E-mail:</td>
+				<td>
+					<input type="text" id="emailAdress" name="email" value="" />
+				</td>
+			</tr>
+			<tr>
+			<td>Комментарий или просьба:</td>
+				<td colspan="3"><textarea name="comment" cols="48" rows="6"></textarea></td>
+			</tr>
+			<tr>
+			<td>Введите код с картинки:</td>
+				<td colspan="3">
+				<img src="/moduls/forma-zakaza/antibot.php" /> <br />
+				<input type="text" id="keystring" name="keystring" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="submit" value="Отправить" style="float:right;">
+				</td>
+			</tr>
+			</table>
+
+			<input name="senddata" type="hidden" value="1">
+	</form>
+<p style="margin-left:28px;">Наши контактные данные находятся <a href="/kontakti" title="Контакты">здесь</a>.</p>
+</div>
+
+<script>
+$(function() {
+	$( "#firstDate" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+	$( "#secondDate" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+});
+jQuery(function($){
+	$.datepicker.regional['ru'] = {
+		closeText: 'Закрыть',
+		prevText: '&#x3c;Пред',
+		nextText: 'След&#x3e;',
+		currentText: 'Сегодня',
+		monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь',
+		'Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+		monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн',
+		'Июл','Авг','Сен','Окт','Ноя','Дек'],
+		dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+		dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+		dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+		weekHeader: 'Не',
+		dateFormat: 'dd.mm.yy',
+		firstDay: 1,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''};
+	$.datepicker.setDefaults($.datepicker.regional['ru']);
+});
+</script>

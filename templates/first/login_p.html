@@ -1,0 +1,39 @@
+
+<script type="text/javascript">
+$(document).ready(function(){/* Вход */
+		$("#login").click(
+		function() {
+            showPopup('login_p');
+        });
+
+});
+</script>
+<style type="text/css">
+#close_login{float:right;}
+
+ div.login_p {
+    border: 5px solid #000000;
+    max-width:300px;
+    padding:10px;
+}
+
+</style>
+<div id="popup_login_p" class="hidden">
+  <div class="login_p">
+  <b id="close_login"><a href="#" onCLick="closePopup(); return false;">Закрыть</a></b>
+		<div>
+			<form name="create" action="/?action=login&ok=ok" method="post">
+			<table border="0" >
+				<tr>
+
+						<td width="100" height="50%">Логин :</td><td>    <input name="login" type="text" value="" /></td>  </tr><tr>
+
+						<td height="50%">Пароль :         </td><td><input name="pass" type="text" value="" /></td>  </tr><tr>
+
+				</tr>
+			</table>
+			<div align="right"><input type="submit" value="Войти"></div>
+			</form>
+		</div>
+  </div>
+ </div>

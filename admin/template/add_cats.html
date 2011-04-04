@@ -53,14 +53,14 @@ $(document).ready(function() {
 	}
 </style>
 
-<table>
+<table style="border:solid 1px #ff9900;float: inherit;" width="100%">
 	<tr >
             <td>
 <!--		Create or Update Category		-->           
             <div class="okno_b">
             <div class="fon_opis"><b>Создать каталог:</b></div>
 	            <form id="admin-category-edit-CareateCatalog" action="/admin.php?action=add&option=addcatalog" method="post">
-					<table class="table_fon">
+					<table class="table_fon" width="100%">
 					<tr>
 						<td width="100" class="table_names">Имя(engl):</td>
 						<td align="left"><input name="Name" type="text" value="" size="60"/></td>  
@@ -96,16 +96,17 @@ $(document).ready(function() {
 				<div class="okno_b">
 				<div align="center">
 					<div align="left" class="fon_opis">Список всех категорий:</div>
-					<table width="700" class="table_fon" cellpadding="0" cellspacing="0">
+					<table width="100%" class="table_fon" cellpadding="0" cellspacing="0">
 						<tr>
 						<td width="25" class="table_names">ID</td>
 						<td width="35" class="admin-category-edit-td-status">Статус:</td>
 						<td class="admin-category-edit-td-categories">Категория:</td>
 						<td class="admin-category-edit-td-anonce">Анонс:</td>
-						<td class="admin-category-edit-td-tools" colspan="2">Действия:</td>
+						<td class="admin-category-edit-td-anonce">Элементов Всего/Публик:</td>
+						<td class="admin-category-edit-td-tools"  width="70">Действия:</td>
 						</tr>
 					</table>
-					<table width="700" id="admin-category-edit-categoryes-table" cellpadding="0" cellspacing="0">
+					<table width="100%" id="admin-category-edit-categoryes-table" cellpadding="0" cellspacing="0">
 						<tr>{cats_list}
 					</table>
 				</div>
