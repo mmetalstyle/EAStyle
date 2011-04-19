@@ -1,12 +1,16 @@
 <?php
 
+if (!defined('EASTYLEENGINE')) {
+	die("Hacking attempt!");
+}
+
 if ($_SESSION['user']) {
 	global $db;
-	
+
 	if (isset($_GET['page_id'])) {
 		//$out = array();
-		$page = file_get_contents(ROOT_DIR . "/admin/template/edit_page.html");
-		$result = $db->fetch_array("SELECT * FROM catalog where ID='" . $_GET['page_id'] . "'");
+		$page = file_get_contents(ROOT_DIR."/admin/template/edit_page.html");
+		$result = $db->fetch_array("SELECT * FROM catalog where ID='".$_GET['page_id']."'");
 
 		if ($result) {
 			$out['title'] = $result['zagolovok'];
@@ -20,13 +24,12 @@ if ($_SESSION['user']) {
 			$page = str_replace("{id_news}", $out['ID'], $page);
 
 		} else {
-			$page = iconv("windows-1251", "utf-8", "������ �������!");
+			//$page = iconv("windows-1251", "utf-8", "������ �������!");
 		}
 	}
 	echo $page;
-}else{
+} else {
 	echo "not a user";
 }
 $downloadAdminTemplate = false;
-
 ?>

@@ -1,9 +1,9 @@
 <?php
-/**
- * Enter description here ...
- * @author yuriy
- *
- */
+
+if (!defined('EASTYLEENGINE')) {
+	die("Hacking attempt!");
+}
+
 class PageCatalog {
 	private $db;
 	private $page;
@@ -32,7 +32,7 @@ class PageCatalog {
 			$this->smarty->assign('title', $this->pageData['title']);
 			$this->smarty->assign('page_keys', $this->pageData['page_keys']);
 			$this->smarty->assign('links', $this->pageData['links']);
-			$this->smarty->assign('templateDir', "/" . TEMAPLATE_DIR);
+			$this->smarty->assign('templateDir', "/".TEMAPLATE_DIR);
 		}
 	}
 
@@ -41,17 +41,17 @@ class PageCatalog {
 	 */
 	public function getPageData() {
 		if ($this->catalog && $this->podCatalog && $this->page) {
-			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name='" . $this->db->argFilter($_GET['page']) . "' AND name_2='" . $this->db->argFilter($_GET['catalog']) . "' AND name_1='" . $this->db->argFilter($_GET['podcatalog']) . "'");
+			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name='".$this->db->argFilter($_GET['page'])."' AND name_2='".$this->db->argFilter($_GET['catalog'])."' AND name_1='".$this->db->argFilter($_GET['podcatalog'])."'");
 			return;
 		}
 
 		if ($this->catalog && $this->podCatalog) {
-			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name_1='" . $this->db->argFilter($_GET['catalog']) . "' AND name='" . $this->db->argFilter($_GET['podcatalog']) . "' AND levelup='2'");
+			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name_1='".$this->db->argFilter($_GET['catalog'])."' AND name='".$this->db->argFilter($_GET['podcatalog'])."' AND levelup='2'");
 			return;
 		}
 
 		if ($this->catalog) {
-			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name='" . $this->db->argFilter($_GET['catalog']) . "' AND levelup='1'");
+			$this->pageData = $this->db->fetch_array("SELECT * FROM `catalog` WHERE name='".$this->db->argFilter($_GET['catalog'])."' AND levelup='1'");
 			return;
 		}
 		/* Load main page */
@@ -79,9 +79,9 @@ class PageCatalog {
 
 	public function getCatalogContent() {
 		if ($this->pageData['levelup'] == 1) {
-			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='" . $this->pageData['name'] . "' AND levelup='2' ");
+			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->pageData['name']."' AND levelup='2' ");
 		} elseif ($this->pageData['levelup'] == 2) {
-			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='" . $this->pageData['name'] . "' AND name_2='" . $this->pageData['name_1'] . "' AND levelup='3' ");
+			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->pageData['name']."' AND name_2='".$this->pageData['name_1']."' AND levelup='3' ");
 		}
 
 		if ($this->pageCatalogData) {
@@ -94,7 +94,7 @@ class PageCatalog {
 				} else {
 				//$tpl->set('{login}', "");
 				}
-				
+
 			$this->smarty->assign('content', $this->pageContent);
 		} else {
 			//TODO print Error
@@ -112,17 +112,17 @@ class PageCatalog {
 			$res[$i]['name_1'] = stripslashes($res[$i]['name_1']);
 			$res[$i]['ID'] = stripslashes($res[$i]['ID']);
 
-			$con = file_get_contents(ROOT_DIR . "/template/shotstory.html");
+			$con = file_get_contents(ROOT_DIR."/template/shotstory.html");
 
 			$con = str_replace('{shot-story}', $res[$i]['shot_descr'], $con);
 			$con = str_replace('{title}', $res[$i]['title'], $con);
 			if ($res[$i]['name_2'] == "") {
-				$con = str_replace('{full-link}', "/" . $res[$i]['name_1'] . "/" . $res[$i]['name'], $con);
+				$con = str_replace('{full-link}', "/".$res[$i]['name_1']."/".$res[$i]['name'], $con);
 			} else {
-				$con = str_replace('{full-link}', "/" . $res[$i]['name_2'] . "/" . $res[$i]['name_1'] . "/" . $res[$i]['name'], $con);
+				$con = str_replace('{full-link}', "/".$res[$i]['name_2']."/".$res[$i]['name_1']."/".$res[$i]['name'], $con);
 			}
 			if (isset($_SESSION['user'])) {
-				$content .= $this->getContentEditDisplay($content, $res[$i]['ID']) . $con;
+				$content .= $this->getContentEditDisplay($content, $res[$i]['ID']).$con;
 			} else {
 				$content .= $con;
 			}

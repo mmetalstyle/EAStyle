@@ -1,4 +1,9 @@
 <?php
+
+if (!defined('EASTYLEENGINE')) {
+	die("Hacking attempt!");
+}
+
 class Errors {
 	var $err = array();
 	var $error = -1;
