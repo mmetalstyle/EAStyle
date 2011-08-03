@@ -32,7 +32,6 @@ class PageCatalog {
 			$this->smarty->assign('title', $this->pageData['title']);
 			$this->smarty->assign('page_keys', $this->pageData['page_keys']);
 			$this->smarty->assign('links', $this->pageData['links']);
-			$this->smarty->assign('templateDir', "/".TEMAPLATE_DIR);
 		}
 	}
 
@@ -63,18 +62,16 @@ class PageCatalog {
 	 */
 	public function getPageContent() {
 		$this->pageContent = file_get_contents(TEMAPLATE_DIR."/fullstory.html");
+		
+		if (isset($_SESSION['user'])) {
+			$editPanel = file_get_contents(ROOT_DIR . "/admin/template/edit_news.html");
+			$editPanel = str_replace('{id_news}', $this->pageData['ID'], $editPanel);
+			$this->pageContent = $editPanel.$this->pageContent;
+		}
+		
 		$this->pageContent = str_replace('{fullStory}', $this->pageData['full_descr'], $this->pageContent);
 		$this->pageContent = str_replace('{zagolovok}', $this->pageData['zagolovok'], $this->pageContent);
-
-		//TODO access to admin panel
-		//if (isset($_SESSION['user'])) {
-		//$tpl->set('{login}', "<a href=\"/?action=logout\">logout</a>");
-		//$tpl->set('{content}', $work->getContentEditDisplay($content, $res['ID']) . $content);
-		//} else {
-		//$tpl->set('{login}', "");
-		//$tpl->set('{content}', $content);
-
-		$this->smarty->assign('content', $this->pageContent);
+		$this->smarty->assign('content', $this->pageContent);			
 	}
 
 	public function getCatalogContent() {
@@ -104,6 +101,7 @@ class PageCatalog {
 	function getNewsCollection() {
 		$res = array();
 		$content = "";
+		//die(var_dump($this->pageCatalogData));
 		for ($i = 0; $i < $this->pageCatalogData[0]; $i++) {
 			$res[$i] = $this->pageCatalogData[$i + 1];
 			$res[$i]['title'] = stripslashes($res[$i]['title']);
@@ -112,7 +110,7 @@ class PageCatalog {
 			$res[$i]['name_1'] = stripslashes($res[$i]['name_1']);
 			$res[$i]['ID'] = stripslashes($res[$i]['ID']);
 
-			$con = file_get_contents(ROOT_DIR."/template/shotstory.html");
+			$con = file_get_contents(ROOT_DIR.TEMAPLATE_DIR."shotstory.html");
 
 			$con = str_replace('{shot-story}', $res[$i]['shot_descr'], $con);
 			$con = str_replace('{title}', $res[$i]['title'], $con);
@@ -121,12 +119,9 @@ class PageCatalog {
 			} else {
 				$con = str_replace('{full-link}', "/".$res[$i]['name_2']."/".$res[$i]['name_1']."/".$res[$i]['name'], $con);
 			}
-			if (isset($_SESSION['user'])) {
-				$content .= $this->getContentEditDisplay($content, $res[$i]['ID']).$con;
-			} else {
-				$content .= $con;
-			}
+			$content .= $con;
 		}
+		//die($content);
 		return $content;
 	}
 }

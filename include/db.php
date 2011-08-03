@@ -70,6 +70,17 @@ class db {
 		}
 		return $value;
 	}
+	
+	function quote_smart($value) {
+		if (get_magic_quotes_gpc()) {
+			$value = stripslashes($value);
+		}
+
+		if (!is_numeric($value)) {
+			$value = mysql_real_escape_string($value);
+		}
+		return $value;
+	}
 }
 
 $db = new db($config['dbhost'], $config['dbuser'], $config['dbpass'], $config['dbname']);

@@ -71,18 +71,18 @@ $(document).ready(function(){
 
         /* ������ �������������� ������ ���� */
 		$("#edit").click(
-		//var page_id = 27;
 		function() {
-        	//showPopup('edit_p');
+			var rndval = new Date().getTime();
             $('#content').load(
-	        	"/admin.php/?action=edit_page_editor&page_id="+$("#edit").attr('class'),
+	        	"/admin.php/?action=edit_page_editor&rndval="+rndval+"&page_id="+$("#edit").attr('class'),
 	        	{rnd:Math.random()}, // ����� �� �����������
 	        	function(){
-	        	//$('.content_loader').hide();
+	    			reloadEditApply();
 	    	});
 		});
 		var editp_width = Math.max(40, parseInt(($(window).width()/100)*90)) + 'px';
 		$('.edit_p').css({'width':editp_width});
+		
 });
 </script>
 

@@ -6,7 +6,7 @@
 	}
 .right{	float:right;}
 </style>
-<div id="popup_edit_p">
+<div id="popup_edit_p" style="position: fixed; width:90%;height:90%; margin: 20px 50px; z-index:999; top:0;left:0;background: #333;border: solid 1px #0000ff;">
   <div class="edit_p">
 			<form id="iditTarget" method="post">
 		       <table width="100%" border="0">
@@ -16,7 +16,7 @@
                     <td style="padding-top:5px;padding-left:10px;">
                     </td></tr>
                     <tr id="panel_show_full">
-					<td>Полная новость :  </td><td><textarea  name="Full"  rows="17" style="width:90%;border:solid 2px #4EF3EB;">{description}</textarea></td>
+					<td>Полная новость :  </td><td><textarea  name="Full"  rows="17" style="width:90%;height:400px;border:solid 2px #4EF3EB;">{description}</textarea></td>
                     </tr>
                     <tr>
                     <td width="150">Ключи :</td><td>    <input name="Keys" type="text" value="{keys}" size="50" style="float:left;" />
@@ -24,7 +24,7 @@
      			</tr>
 			   </table>
 				<input name="id" type="hidden" value="{id_news}">
-				<b style="float:right;padding:2px;border:solid 1px #4EF3EB;background: #ffffff;" id="edit_close"><a href="" onCLick="sendPost('/admin.php/?action=edit_page');">Применить</a></b>
+				<b style="float:right;padding:2px;border:solid 1px #4EF3EB;background: #ffffff;" id="edit_close"><a id="edit_apply" href="#" onclick="return false;">Применить</a></b>
 			</form>
 	</div>
 </div>

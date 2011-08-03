@@ -18,18 +18,29 @@ class SmartyEAStyle extends Smarty {
 }
 $smarty = new SmartyEAStyle();
 
-$smarty->assign('topMenu1', true);
+$smarty->assign('topMenu1', false);
 $smarty->assign('topMenu2', true);
 $smarty->assign('staticHeader', true);
 $smarty->assign('leftPanel1', true);
 $smarty->assign('leftPanel2', true);
-$smarty->assign('block1', true);
+$smarty->assign('block1', false);
 $smarty->assign('content', true);
-$smarty->assign('block2', true);
-$smarty->assign('rightPanel1', true);
-$smarty->assign('rightPanel2', true);
-$smarty->assign('block3', true);
-$smarty->assign('bottomMenu1', true);
+$smarty->assign('block2', false);
+$smarty->assign('rightPanel1', false);
+$smarty->assign('rightPanel2', false);
+$smarty->assign('block3', false);
+$smarty->assign('bottomMenu1', false);
 $smarty->assign('footer', true);
-$smarty->assign('bottomMenu2', true);
+$smarty->assign('bottomMenu2', false);
+
+$smarty->assign('templateDir', "/".TEMAPLATE_DIR);
+
+if (isset($_SESSION['user'])) {
+			$smarty->assign('login', "<a href=\"/?action=logout\">logout</a>");
+}
+
+
+
+
+
 ?>

@@ -4,10 +4,10 @@ if (!defined('EASTYLEENGINE')) {
 	die("Hacking attempt!");
 }
 
-if (!$_SESSION['user']) {
+if (!isset($_SESSION['user'])) {
 	global $db;
 
-	$data['content'] = file_get_contents("template/login.html");
+	$data['content'] = file_get_contents("templates/first/login.html");
 
 	if (isset($_POST['login']) && isset($_POST['pass']) && (isset($_GET['ok']) && $_GET['ok'] == "ok")) {
 

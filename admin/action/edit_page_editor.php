@@ -9,11 +9,11 @@ if ($_SESSION['user']) {
 
 	if (isset($_GET['page_id'])) {
 		//$out = array();
-		$page = file_get_contents(ROOT_DIR."/admin/template/edit_page.html");
+		$page = file_get_contents(ROOT_DIR . "/admin/template/edit_page.html");
 		$result = $db->fetch_array("SELECT * FROM catalog where ID='".$_GET['page_id']."'");
 
 		if ($result) {
-			$out['title'] = $result['zagolovok'];
+			$out['title'] = $result['title'];
 			$out['description'] = $result['full_descr'];
 			$out['keys'] = $result['page_keys'];
 			$out['ID'] = $result['ID'];
@@ -25,6 +25,7 @@ if ($_SESSION['user']) {
 
 		} else {
 			//$page = iconv("windows-1251", "utf-8", "������ �������!");
+			die("page not found[".$_GET['page_id']."]");
 		}
 	}
 	echo $page;

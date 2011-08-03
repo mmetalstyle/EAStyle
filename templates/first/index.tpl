@@ -8,13 +8,12 @@
 <link rel="stylesheet" type="text/css" href="{$templateDir}/css/style.css" />
 <link rel="stylesheet" href="{$templateDir}/css/featureCarousel.css" charset="utf-8" />
 {$links}
-<script src="/include/js/jquery-1.4.4.js" type="text/javascript" charset="utf-8"></script>
-<script src="/include/js/jquery-ui-1.8.9.custom.min.js" type="text/javascript"></script>
 <script src="/include/js/engine.js" type="text/javascript"></script>
-<script src="{$templateDir}/js/jquery.featureCarousel.js" type="text/javascript" charset="utf-8"></script>
 </head>
 
 <body>
+<div id="admin-panel" style="">{$login}</div>
+<div id='background-fon'></div>
 <div id='mainblock' >
 
 {* top-menu-1 *}

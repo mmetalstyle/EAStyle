@@ -21,7 +21,10 @@ if ($_SESSION['user']) {
 		}
 
 	} else {
-		$query = "UPDATE catalog SET zagolovok = '".$_POST['Zagolovok']."', full_descr ='".$_POST['Full']."', page_keys = '".$_POST['Keys']."' WHERE ID = '".$_POST['id']."'";
+		$fullText = str_replace("\n", "\r", $_POST['Full']);
+		$fullText = str_replace("\v", "", $fullText);
+		$fullText = str_replace("\t", "", $fullText);
+		$query = "UPDATE catalog SET title = '".$db->quote_smart($_POST['Zagolovok'])."', full_descr ='".$db->quote_smart($fullText)."', page_keys = '".$db->quote_smart($_POST['Keys'])."' WHERE ID = '".$db->quote_smart($_POST['id'])."'";
 		$result = $db->query($query);
 
 		if ($result) {
@@ -30,7 +33,7 @@ if ($_SESSION['user']) {
 			if ($result) {
 				$edit = file_get_contents(ROOT_DIR."/admin/template/edit_news.html");
 				$edit = str_replace('{id_news}', $_POST['id'], $edit);
-				echo $edit.$work->getFullContentWithTemplate($result);
+				die($edit.$work->getFullContentWithTemplate($result));
 			} else {
 				//TODO echo error
 			}

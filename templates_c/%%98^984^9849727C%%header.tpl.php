@@ -1,4 +1,7 @@
-<div  style="background-image: url({$templateDir}/images/fon.jpg);width:950px;height:394px;">
+<?php /* Smarty version 2.6.26, created on 2011-05-26 01:21:07
+         compiled from first/header.tpl */ ?>
+<div  style="background-image: url(<?php echo $this->_tpl_vars['templateDir']; ?>
+/images/fon.jpg);width:950px;height:394px;">
 		<a href="/index.php">
 			<span style="float:left;margin-top:50px;border:solid 0px #000000;min-width:450px;min-height:300px;max-width:450px;max-height:300px;">
 			</span>
