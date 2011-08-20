@@ -11,7 +11,7 @@ if (!isset($_SESSION['user'])) {
 
 	if (isset($_POST['login']) && isset($_POST['pass']) && (isset($_GET['ok']) && $_GET['ok'] == "ok")) {
 
-		$query = "SELECT * FROM users WHERE login='".$_POST['login']."'  AND password='".$_POST['pass']."'";
+		$query = "SELECT * FROM users WHERE login='".$db->quote_smart($_POST['login'])."'  AND password='".$db->quote_smart($_POST['pass'])."'";
 		$result = $db->fetch_array($query);
 
 		if ($result[0]) {

@@ -9,7 +9,7 @@ class Work {
 	function delete_cats($id) {
 		global $db;
 
-		$result = $db->fetch_big_array("DELETE FROM `catalog` WHERE `catalog`.`ID` = $id LIMIT 1");
+		$result = $db->fetch_big_array("DELETE FROM `catalog` WHERE `catalog`.`ID` = ".$db->quote_smart($id)." LIMIT 1");
 
 		return $result;
 	}

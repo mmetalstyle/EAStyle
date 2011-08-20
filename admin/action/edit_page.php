@@ -9,7 +9,7 @@ if ($_SESSION['user']) {
 	global $work;
 
 	if (isset($_GET['editor'])) {
-		$query = "SELECT * FROM catalog where ID='".$_POST['id']."'";
+		$query = "SELECT * FROM catalog where ID='".$db->quote_smart($_POST['id'])."'";
 		$result = $db->fetch_array($query);
 
 		if ($result) {
@@ -28,7 +28,7 @@ if ($_SESSION['user']) {
 		$result = $db->query($query);
 
 		if ($result) {
-			$query = "SELECT * FROM catalog where ID='".$_POST['id']."'";
+			$query = "SELECT * FROM catalog where ID='".$db->quote_smart($_POST['id'])."'";
 			$result = $db->fetch_array($query);
 			if ($result) {
 				$edit = file_get_contents(ROOT_DIR."/admin/template/edit_news.html");

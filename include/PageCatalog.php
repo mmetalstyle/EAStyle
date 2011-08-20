@@ -76,9 +76,9 @@ class PageCatalog {
 
 	public function getCatalogContent() {
 		if ($this->pageData['levelup'] == 1) {
-			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->pageData['name']."' AND levelup='2' ");
+			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->db->quote_smart($this->pageData['name'])."' AND levelup='2' ");
 		} elseif ($this->pageData['levelup'] == 2) {
-			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->pageData['name']."' AND name_2='".$this->pageData['name_1']."' AND levelup='3' ");
+			$this->pageCatalogData = $this->db->fetch_big_array("SELECT * FROM `catalog` WHERE name_1='".$this->db->quote_smart($this->pageData['name'])."' AND name_2='".$this->db->quote_smart($this->pageData['name_1'])."' AND levelup='3' ");
 		}
 
 		if ($this->pageCatalogData) {

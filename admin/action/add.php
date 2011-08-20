@@ -103,11 +103,11 @@ if ($_SESSION['user']) {
 		function addNewCatalog($aCatalog, $aName, $aTitle, $aZagolovok, $aMetaTags, $aTemplate) {
 			if ($aCatalog == "0") {
 				$result = $this->db->query("INSERT INTO catalog (name, name_2, name_1, levelup,  metka, title , zagolovok, metategs, template  )
-						VALUES ('".$aName."','','','1','2','".$aTitle."','".$aZagolovok."','".$aMetaTags."','".$aTemplate."');");
+						VALUES ('".$this->db->quote_smart($aName)."','','','1','2','".$this->db->quote_smart($aTitle)."','".$this->db->quote_smart($aZagolovok)."','".$this->db->quote_smart($aMetaTags)."','".$this->db->quote_smart($aTemplate)."');");
 
 			} else {
 				$result = $this->db->query("INSERT INTO catalog (name, name_2, name_1, levelup,  metka, title , zagolovok, metategs, template  )
-						VALUES ('".$aName."','','".$aCatalog."','2','2','".$aTitle."','".$aZagolovok."','".$aMetaTags."','".$aTemplate."');");
+						VALUES ('".$this->db->quote_smart($aName)."','','".$this->db->quote_smart($aCatalog)."','2','2','".$this->db->quote_smart($aTitle)."','".$this->db->quote_smart($aZagolovok)."','".$this->db->quote_smart($aMetaTags)."','".$this->db->quote_smart($aTemplate)."');");
 			}
 			return $this->getCategoryListLevel1();
 		}

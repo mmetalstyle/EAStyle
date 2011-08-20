@@ -10,7 +10,7 @@ if ($_SESSION['user']) {
 	if (isset($_GET['page_id'])) {
 		//$out = array();
 		$page = file_get_contents(ROOT_DIR . "/admin/template/edit_page.html");
-		$result = $db->fetch_array("SELECT * FROM catalog where ID='".$_GET['page_id']."'");
+		$result = $db->fetch_array("SELECT * FROM catalog where ID='".$db->quote_smart($_GET['page_id'])."'");
 
 		if ($result) {
 			$out['title'] = $result['title'];
