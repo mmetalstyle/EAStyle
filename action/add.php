@@ -4,6 +4,7 @@ if (!defined('EASTYLEENGINE')) {
 	die("Hacking attempt!");
 }
 global $db;
+// lolololo
 
 if ($_POST['Title'] && $_POST['Name']) {
 
